@@ -26,7 +26,7 @@ export default function ProductPick({
     <div
       style={{ background: color }}
       className={cn(
-        "w-8 h-8 rounded-full cursor-pointer transition-all duration-300 ease-in-out hober: opacity-75",
+        "w-8 h-8 rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:opacity-75 border border-primary",
         selectedColor === productType ? "opacity-100" : "opacity-50"
       )}
       onClick={() =>

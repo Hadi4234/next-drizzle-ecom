@@ -13,11 +13,14 @@ const Stars = ({ rating, totalReviews, size = 14 }: { rating: number, totalRevie
         )}
       ></Star>
     ))}
-    <span className="text-secondary-foreground font-bold text-sm ml-2">
-      {totalReviews} reviews
-    </span>
+    {totalReviews && (
+      <span className="text-secondary-foreground font-bold text-sm ml-2">
+        {totalReviews} reviews
+      </span>
+    )}
+  </div>
 
-  </div>);
+  );
 }
 
 export default Stars;

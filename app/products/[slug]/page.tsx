@@ -9,6 +9,7 @@ import ProductShowcase from "@/components/products/product-showcase"
 import Reviews from "@/components/reviews/reviews"
 import { getReviewAverage } from "@/lib/review-avarage"
 import { Stars } from "lucide-react"
+import AddCart from "@/components/cart/add-card"
 
 export async function generateStaticParams() {
   const data = await db.query.productVariants?.findMany({
@@ -40,6 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       },
     },
   })
+  console.log(variant?.id)
   if (variant) {
     const reviewAvg = getReviewAverage(
       variant?.product.reviews.map((r) => r.rating)
@@ -54,10 +56,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <h2 className="text-2xl font-bold">{variant?.product.title}</h2>
             <div>
               <ProductType variants={variant.product.productVariants} />
-              <Stars
+              {/* <Stars
                 rating={reviewAvg}
                 totalReviews={variant.product.reviews.length}
-              />
+              /> */}
             </div>
             <Separator className="my-2" />
             <p className="text-2xl font-medium py-2">
@@ -80,9 +82,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   price={variant.product.price}
                   title={variant.product.title}
                   image={prodVariant?.variantImages[0]?.url}
+
                 />
               ))}
             </div>
+            <AddCart />
           </div>
         </section>
         <Reviews productID={variant.productID} />

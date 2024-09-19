@@ -34,6 +34,7 @@ import { createVariant } from "@/server/action/create-variant"
 import { toast } from "sonner"
 import { forwardRef, useEffect, useState } from "react"
 import { deleteVariant } from "@/server/action/delete-variant"
+import { revalidatePath } from "next/cache";
 
 type VariantProps = {
   children: React.ReactNode
@@ -106,6 +107,7 @@ export const ProductVariant = forwardRef<HTMLDivElement, VariantProps>(
       onExecute() {
         toast.loading("Deleting variant", { duration: 1 })
         setOpen(false)
+        revalidatePath("/dashboard/products")
       },
       onSuccess(data) {
         if (data?.error) {

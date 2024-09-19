@@ -106,7 +106,7 @@ export const products = pgTable(
   description:text("description").notNull(),
   created:timestamp("created").defaultNow(),
   price:real("price").notNull(),
-})
+  }) 
 
 export const productVariants=pgTable(
   "productVariants",

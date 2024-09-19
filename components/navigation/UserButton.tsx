@@ -39,7 +39,7 @@ export const UserButton = ({ user }: Session) => {
     return (
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger>
-          <Avatar>
+          <Avatar className="w-7 h-7">
             {user.image && (
               <Image src={user.image} alt={user.name!} fill={true} />
             )}
@@ -84,7 +84,7 @@ export const UserButton = ({ user }: Session) => {
             />{" "}
             Settings
           </DropdownMenuItem>
-           {theme && (
+          {theme && (
             <DropdownMenuItem className="py-2 font-medium cursor-pointer ">
               <div
                 onClick={(e) => e.stopPropagation()}
