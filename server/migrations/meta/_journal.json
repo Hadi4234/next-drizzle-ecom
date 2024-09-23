@@ -78,6 +78,27 @@
       "when": 1726043396804,
       "tag": "0010_left_lifeguard",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1726810497602,
+      "tag": "0011_flawless_speed_demon",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1726892263355,
+      "tag": "0012_huge_bulldozer",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1726896395263,
+      "tag": "0013_dazzling_maximus",
+      "breakpoints": true
     }
   ]
 }

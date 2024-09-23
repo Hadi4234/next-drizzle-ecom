@@ -12,7 +12,7 @@ export default function DashboardNav({
 }) {
   const pathname = usePathname()
   return (
-    <nav className="py-2 overflow-auto">
+    <nav className="py-4 overflow-auto">
       <ul className="flex gap-6 text-xs font-semibold ">
         <AnimatePresence>
           {allLinks.map((link) => (
@@ -25,7 +25,7 @@ export default function DashboardNav({
                 href={link.path}
               >
                 {link.icon}
-                {link.label}
+                <span className=" text-lg"> {link.label}</span>
                 {pathname === link.path ? (
                   <motion.div
                     className="h-[2px] w-full rounded-full absolute bg-primary z-0 left-0 -bottom-1"

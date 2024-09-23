@@ -15,7 +15,7 @@ export default async function Nav() {
       <nav>
         <ul className="flex justify-between items-center md:gap-8 gap-4">
           <li className="flex flex-1">
-            <Link href="/" className="font-bold text-xl font-serif flex flex-row"><span className="text-primary mr-1">Unique</span>Shop<span><FcElectricalSensor className="w-6 h-6" /></span></Link></li>
+            <Link href="/" className="font-bold text-2xl  flex flex-row"><span className="text-primary mr-1">Unique</span>Shop<span><FcElectricalSensor className="w-6 h-6" /></span></Link></li>
           <li className="relative flex items-center hover:bg-muted">
             <CartDrawer />
           </li>

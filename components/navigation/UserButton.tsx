@@ -39,7 +39,7 @@ export const UserButton = ({ user }: Session) => {
     return (
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger>
-          <Avatar className="w-7 h-7">
+          <Avatar className="w-8 h-8 ring-2 ring-primary/75 border-4 border-transparent">
             {user.image && (
               <Image src={user.image} alt={user.name!} fill={true} />
             )}

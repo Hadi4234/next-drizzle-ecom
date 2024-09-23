@@ -1,5 +1,5 @@
 "use server"
-import getBaseURL from "@/lib/baseUrl";
+import getBaseURL from "@/lib/base-url";
 import nodemail from "nodemailer";
 
 const domain = getBaseURL(); 
