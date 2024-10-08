@@ -47,6 +47,7 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
+    "dotenv-expand": "^11.0.6",
     "drizzle-orm": "^0.30.8",
     "drizzle-zod": "^0.5.1",
     "embla-carousel-react": "^8.1.8",

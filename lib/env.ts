@@ -26,5 +26,10 @@ const envSchema = z.object({
 // and return the result
 const env = envSchema.parse(process.env);
 
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv extends z.infer<typeof envSchema> {}
+  }
+}
 // Export the result so we can use it in the project
 export default env;
