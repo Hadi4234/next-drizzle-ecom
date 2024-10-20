@@ -47,7 +47,7 @@ export default async function DashboardLayout({
   const allLinks = [...adminLinks, ...userLinks]
 
   return (
-    <div>
+    <div className=" min-h-[70vh]">
       <DashboardNav allLinks={allLinks} />
 
       {children}

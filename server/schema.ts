@@ -16,6 +16,7 @@ import type { AdapterAccountType } from 'next-auth/adapters';
 import { createId } from '@paralleldrive/cuid2';
 import { relations } from 'drizzle-orm';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+import { url } from 'inspector';
 
 export const RoleEnum = pgEnum('role', ['user', 'admin']);
 export const ProductEnum = pgEnum('remark', [
@@ -108,6 +109,13 @@ export const twoFactorTokens = pgTable(
   })
 );
 
+export const categories = pgTable('categories', {
+  id: serial('id').primaryKey(),
+  name: text('title').notNull(),
+  image: text('image').notNull(),
+  created: timestamp('created').defaultNow(),
+});
+
 export const products = pgTable('products', {
   id: serial('id').primaryKey(),
   title: text('title').notNull(),
@@ -115,11 +123,15 @@ export const products = pgTable('products', {
   description: text('description').notNull(),
   created: timestamp('created').defaultNow(),
   price: real('price').notNull(),
+  categoryID: serial('categoryID')
+    .notNull()
+    .references(() => categories.id, { onDelete: 'cascade' }),
 });
 
 export const productVariants = pgTable('productVariants', {
   id: serial('id').primaryKey(),
   color: text('color').notNull(),
+  remark: ProductEnum('remark').default('new'),
   productType: text('productType').notNull(),
   updated: timestamp('updated').defaultNow(),
   productID: serial('productID')
@@ -168,11 +180,22 @@ export const reviews = pgTable(
   }
 );
 
-export const productsRelations = relations(products, ({ many }) => ({
+export const categorysRelations = relations(categories, ({ many }) => ({
+  products: many(products, {
+    relationName: 'products',
+  }),
+}));
+
+export const productsRelations = relations(products, ({ many, one }) => ({
   productVariants: many(productVariants, {
     relationName: 'productVariants',
   }),
   reviews: many(reviews, { relationName: 'reviews' }),
+  categories: one(categories, {
+    fields: [products.categoryID],
+    references: [categories.id],
+    relationName: 'categories',
+  }),
 }));
 
 export const productVariantsRelations = relations(

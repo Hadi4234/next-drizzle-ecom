@@ -10,6 +10,7 @@ import Reviews from "@/components/reviews/reviews"
 import { getReviewAverage } from "@/lib/review-avarage"
 import { Stars } from "lucide-react"
 import AddCart from "@/components/cart/add-card"
+import SimilarProduct from "@/components/section/similar-product"
 
 export async function generateStaticParams() {
   const data = await db.query.productVariants?.findMany({
@@ -33,6 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     with: {
       product: {
         with: {
+          categories: true,
           reviews: true,
           productVariants: {
             with: { variantImages: true, variantTags: true },
@@ -41,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       },
     },
   })
-  console.log(variant?.id)
+  console.log(variant?.product.categoryID)
   if (variant) {
     const reviewAvg = getReviewAverage(
       variant?.product.reviews.map((r) => r.rating)
@@ -89,7 +91,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <AddCart />
           </div>
         </section>
-        <Reviews productID={variant.productID} />
+        {/* <Separator /> */}
+        <SimilarProduct categoryID={variant.product.categoryID} />
+        {/* <Reviews productID={variant.productID} /> */}
       </main>
     )
   }

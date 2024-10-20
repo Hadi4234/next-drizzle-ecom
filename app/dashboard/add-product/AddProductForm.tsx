@@ -20,6 +20,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { DollarSign } from "lucide-react"
 import Tiptap from "./tiptap"
@@ -37,6 +44,7 @@ export default function ProductForm() {
     resolver: zodResolver(ProductSchema),
     defaultValues: {
       title: "",
+      categoryID: 0,
       description: "",
       price: 0,
     },
@@ -47,30 +55,31 @@ export default function ProductForm() {
   const searchParams = useSearchParams()
   const editMode = searchParams.get("id")
 
-  const checkProduct = async(id:number)=>{
-    if(editMode){
+  const checkProduct = async (id: number) => {
+    if (editMode) {
       const data = await getProduct(id)
-      if(data.error){
+      if (data.error) {
         toast.error(data.error)
         router.push("/dashboard/products")
         return
       }
-      if(data.success){
-        const id=parseInt(editMode)
-        form.setValue("title",data.success.title)
-        form.setValue("description",data.success.description)
-        form.setValue("price",data.success.price)
-        form.setValue("id",id)
+      if (data.success) {
+        const id = parseInt(editMode)
+        form.setValue("title", data.success.title)
+        form.setValue("description", data.success.description)
+        form.setValue("price", data.success.price)
+        form.setValue("categoryID", data.success.categoryID)
+        form.setValue("id", id)
       }
 
     }
   }
 
-  useEffect(()=>{
-    if(editMode){
+  useEffect(() => {
+    if (editMode) {
       checkProduct(parseInt(editMode))
     }
-  },[])
+  }, [])
 
   const { execute, status } = useAction(createProduct, {
     onSuccess: (data) => {
@@ -82,11 +91,11 @@ export default function ProductForm() {
         toast.error(data.error)
       }
     },
-   onExecute: (data) => {
-      if(editMode){
+    onExecute: (data) => {
+      if (editMode) {
         toast.loading("Editing Product")
       }
-      if(!editMode){
+      if (!editMode) {
         toast.loading("Creating Product")
       }
     },
@@ -99,7 +108,7 @@ export default function ProductForm() {
     <Card>
       <CardHeader>
         <CardTitle>{editMode ? "Edit Prodcut" : "Create Product"}</CardTitle>
-        <CardDescription>{ editMode ? "Make changes to existing product" : "Add a brand new product"}</CardDescription>
+        <CardDescription>{editMode ? "Make changes to existing product" : "Add a brand new product"}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -113,6 +122,29 @@ export default function ProductForm() {
                   <FormControl>
                     <Input placeholder="Saekdong Stripe" {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="categoryID"
+              render={({ field }) => (
+                <FormItem className="py-2">
+                  <FormLabel>Category</FormLabel>
+                  <Select onValueChange={field.onChange} >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a Category" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="1">living room</SelectItem>
+                      <SelectItem value="2">dining</SelectItem>
+                      <SelectItem value="3">lighting</SelectItem>
+                      <SelectItem value="4">bed room</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
@@ -164,7 +196,7 @@ export default function ProductForm() {
               }
               type="submit"
             >
-             {editMode ? "Save Changes" : "Create Product"}            </Button>
+              {editMode ? "Save Changes" : "Create Product"}            </Button>
           </form>
         </Form>
       </CardContent>

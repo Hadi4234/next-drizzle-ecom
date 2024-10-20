@@ -35,6 +35,12 @@ export type product = InferResultType<
   }
 >;
 
+export type ProductWithCategory = InferResultType<
+  'products',
+  {
+    categories: true;
+  }
+>;
 export type VariantsWithProduct = InferResultType<
   'productVariants',
   {

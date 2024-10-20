@@ -1,0 +1,1 @@
+ALTER TABLE "productVariants" ADD COLUMN "remark" "remark" DEFAULT 'new';

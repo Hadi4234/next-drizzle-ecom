@@ -6,6 +6,7 @@ import { columns } from "./columns"
 export default async function Products() {
   const products = await db.query.products.findMany({
     with: {
+      categories: true,
       productVariants: {
         with: {
           variantImages: true, variantTags: true
@@ -31,6 +32,7 @@ export default async function Products() {
       id: product.id,
       title: product.title,
       price: product.price,
+      category: product.categories.name,
       variants: product.productVariants,
       image,
     }
