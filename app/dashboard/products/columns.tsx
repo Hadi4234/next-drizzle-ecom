@@ -21,10 +21,17 @@ import { VariantsWithImagesTags } from "@/lib/infer-type"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { ProductVariant } from "./product-variant"
 
+enum remark {
+  tranding,
+  new,
+  featured,
+  slider
+}
 type ProductColumn = {
   title: string
   price: number
   image: string
+  remark: remark
   category: string
   variants: VariantsWithImagesTags[]
   id: number

@@ -40,6 +40,7 @@ export default async function Products() {
   if (!dataTable) throw new Error("No data found")
   return (
     <div>
+      {/* @ts-ignore */}
       <DataTable columns={columns} data={dataTable} />
     </div>
   )
