@@ -3,19 +3,20 @@ import { Separator } from '@/components/ui/separator'
 import formatPrice from '@/lib/format-price'
 import { db } from '@/server'
 import { products } from '@/server/schema'
-import { eq } from 'drizzle-orm'
+import { eq, exists } from 'drizzle-orm'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 enum Remark {
-  tranding,
-  new,
-  featured,
-  slider,
+  "tranding",
+  "new",
+  "featured",
+  "slider",
 }
-async function page({ params }: { params: { slug: Remark } }) {
+async function page({ params }: { params: { slug: string } }) {
+
   const product = await db.query.products.findMany({
-    where: eq(products.remark, params.slug),
+
     with: {
       categories: true,
       productVariants: {
