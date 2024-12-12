@@ -44,7 +44,7 @@ export const createVariant = action(
           .delete(variantTags)
           .where(eq(variantTags.variantID, editVariant[0].id));
         await db.insert(variantTags).values(
-          tags.map((tag) => ({
+          tags.map((tag: string) => ({
             tag,
             variantID: editVariant[0].id,
           }))
@@ -53,7 +53,7 @@ export const createVariant = action(
           .delete(variantImages)
           .where(eq(variantImages.variantID, editVariant[0].id));
         await db.insert(variantImages).values(
-          newImgs.map((img, idx) => ({
+          newImgs.map((img: any, idx: number) => ({
             name: img.name,
             size: img.size,
             url: img.url,
@@ -83,13 +83,13 @@ export const createVariant = action(
           where: eq(products.id, productID),
         });
         await db.insert(variantTags).values(
-          tags.map((tag) => ({
+          tags.map((tag: string) => ({
             tag,
             variantID: newVariant[0].id,
           }))
         );
         await db.insert(variantImages).values(
-          newImgs.map((img, idx) => ({
+          newImgs.map((img: any, idx: number) => ({
             name: img.name,
             size: img.size,
             url: img.url,

@@ -86,7 +86,7 @@ export const ProductVariant = forwardRef<HTMLDivElement, VariantProps>(
 
     useEffect(() => {
       setEdit()
-    }, [variant])
+    }, [])
 
     const { execute, status } = useAction(createVariant, {
       onExecute() {

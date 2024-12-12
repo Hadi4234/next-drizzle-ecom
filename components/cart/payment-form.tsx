@@ -74,7 +74,7 @@ export default function PaymentForm({ totalPrice }: { totalPrice: number }) {
       //Handle success
       const { error } = await stripe.confirmPayment({
         elements,
-        clientSecret: data.success.clientSecretID!,
+        clientSecret: data.success.clientSecret!,
         redirect: "if_required",
         confirmParams: {
           return_url: "http://localhost:3000/success",

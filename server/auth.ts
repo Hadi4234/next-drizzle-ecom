@@ -7,6 +7,7 @@ import { LoginSchema } from '@/types/login-schema';
 import { eq } from 'drizzle-orm';
 import { users, accounts } from './schema';
 import bcrypt from 'bcryptjs';
+import Stripe from 'stripe';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
