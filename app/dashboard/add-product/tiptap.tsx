@@ -17,7 +17,7 @@ const Tiptap = ({ val }: { val: string }) => {
         emptyNodeClass:
           "first:before:text-gray-600 first:before:float-left first:before:content-[attr(data-placeholder)] first:before:pointer-events-none",
       }),
-      
+
       Starterkit.configure({
         orderedList: {
           HTMLAttributes: {
@@ -29,9 +29,9 @@ const Tiptap = ({ val }: { val: string }) => {
             class: "list-disc pl-4",
           },
         },
-        
+
       }),
-      
+
     ],
     editorProps: {
       attributes: {
@@ -48,7 +48,7 @@ const Tiptap = ({ val }: { val: string }) => {
 
   useEffect(() => {
     if (editor?.isEmpty) editor.commands.setContent(val)
-  }, [val])
+  }, [editor?.isEmpty, val, editor])
 
   return (
     <div className="flex flex-col gap-2">

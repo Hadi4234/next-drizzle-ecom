@@ -34,7 +34,7 @@ export default function Earnings({
       )
     }
     return weeklyChart(orderItems).reduce((acc, item) => acc + item.revenue, 0)
-  }, [filter])
+  }, [filter, orderItems])
   const activeChart = useMemo(() => {
     const weekly = weeklyChart(orderItems)
     if (filter === "week") {
@@ -43,7 +43,7 @@ export default function Earnings({
     if (filter === "month") {
       return monthlyChart(orderItems)
     }
-  }, [filter])
+  }, [filter, orderItems])
   return (
     <Card className="flex-1 shrink-0 h-full">
       <CardHeader>

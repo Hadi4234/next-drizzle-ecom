@@ -21,10 +21,10 @@ import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { FormSuccess } from "./FormSuccess"
 import { FormError } from "./FormError"
-import { NewPasswordSchema } from "@/types/NewPasswordSchema"
-import { newPassword } from "@/server/actions/new-password"
-import { ResetSchema } from "@/types/ResetSchema"
-import { reset } from "@/server/actions/password-reset"
+import { NewPasswordSchema } from "@/types/NewPassword-schema"
+import { newPassword } from "@/server/action/NewPassword"
+import { ResetSchema } from "@/types/reset-schema"
+import { reset } from "@/server/action/password-reset"
 
 export default function ResetForm() {
   const form = useForm<z.infer<typeof ResetSchema>>({
